@@ -1,3 +1,5 @@
+package model;
+
 public class Token {
     private String value;
 

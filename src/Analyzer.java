@@ -1,3 +1,6 @@
+import model.StateType;
+import model.Token;
+
 import java.util.List;
 
 public class Analyzer {

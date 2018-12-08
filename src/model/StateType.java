@@ -1,3 +1,5 @@
+package model;
+
 public enum StateType {
     Q, //normal state
     R, //back state

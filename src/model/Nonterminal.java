@@ -6,16 +6,35 @@ import java.util.List;
 public class Nonterminal extends Token {
 
     private List<ProductionRule> productionRules;
+    private int chosenRule;
+
     public Nonterminal(String value) {
         super(value);
+        chosenRule = 0;
         productionRules = new ArrayList<>();
     }
 
-    public List<ProductionRule> getProductionRule() {
+    public List<ProductionRule> getProductionRules() {
         return productionRules;
     }
 
     public void setProductionRule(ProductionRule productionRule) {
         productionRules.add(productionRule);
+    }
+
+    public void nextRule(){
+        chosenRule++;
+    }
+
+    public int ruleAmount(){
+        return productionRules.size();
+    }
+
+    public int getChosenRule() {
+        return chosenRule;
+    }
+
+    public ProductionRule getProductionRule() {
+        return productionRules.get(chosenRule);
     }
 }

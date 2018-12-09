@@ -20,13 +20,33 @@ public class Parser {
         inputStack = new ArrayList<>();
     }
 
-    public Parser(StateType state, int index, List<Token> workStack, List<Token> inputStack) {
+    public Parser(StateType state, int index, List<Token> workStack, List<Token> inputStack, Nonterminal start) {
+        initializeParser(state,index, workStack,inputStack,start);
+    }
+
+    public void initializeParser(StateType state, int index, List<Token> workStack, List<Token> inputStack, Nonterminal start){
         this.state = state;
         this.index = index;
         this.workStack = new ArrayList<>(workStack);
         this.inputStack = new ArrayList<>(inputStack);
+        this.start = start;
     }
 
+    private String getListString(List<Token> list){
+        return list.isEmpty()? "\u03B5" : //prints epsilon
+                list.stream()
+                .map(Token::getValue)
+                .reduce("",String::concat);
+    }
+
+    /**
+     * prints the current production
+     * example: (q,1,aS,bc)
+     */
+    public void printProduction(){
+        System.out.println("("+state + "," + index + "," + getListString(workStack) + "," + getListString(inputStack) + ")");
+    }
+    
     /**
      * puts the nonterminal from the beginning of the input stack and appends it to the end of the work stack. Instead of the nonterminal
      * the input stack starts now with the first rule of the nonterminal

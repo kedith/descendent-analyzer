@@ -24,7 +24,7 @@ class ParserTest {
         nonterminal.setProductionRule(productionRule);
         inputStack.add(nonterminal);
         inputStack.add(new Token("c"));
-        Parser parser = new Parser(StateType.Q,1,workStack, inputStack); // (q,1,a,Sc)
+        Parser parser = new Parser(StateType.Q,1,workStack, inputStack, nonterminal); // (q,1,a,Sc)
         parser.expansion(); //should make (q,1,aS,bac)
 
         assertEquals("a", parser.getWorkStack().get(0).getValue());
@@ -49,7 +49,7 @@ class ParserTest {
         workStack.add(nonterminal);
         inputStack.addAll(productionRule1.getRule());
         inputStack.add(new Token("c"));
-        Parser parser = new Parser(StateType.R,1,workStack, inputStack); // (r,1,aS1,bac)
+        Parser parser = new Parser(StateType.R,1,workStack, inputStack, nonterminal); // (r,1,aS1,bac)
         assertEquals(0,nonterminal.getChosenRule());
         parser.anotherTry(); // should generate (r,1,aS2,abc)
 
@@ -73,8 +73,7 @@ class ParserTest {
         workStack.add(nonterminal);
         nonterminal.nextRule();
         inputStack.addAll(productionRule2.getRule());
-        Parser parser = new Parser(StateType.R,0,workStack, inputStack); // (r,0,S2,ba)
-        parser.setStart(nonterminal);
+        Parser parser = new Parser(StateType.R,0,workStack, inputStack, nonterminal); // (r,0,S2,ba)
         parser.anotherTry(); //should generate (r,0,epsilon,S)
 
         assertEquals(StateType.E,parser.getState());
@@ -97,12 +96,28 @@ class ParserTest {
         workStack.add(nonterminal);
         nonterminal.nextRule();
         inputStack.addAll(productionRule2.getRule());
-        Parser parser = new Parser(StateType.R,2,workStack, inputStack); // (r,2,cS2,ba)
-        parser.setStart(nonterminal);
+        Parser parser = new Parser(StateType.R,2,workStack, inputStack,  nonterminal); // (r,2,cS2,ba)
         parser.anotherTry(); //should generate (r,2,c,S)
 
         assertEquals(StateType.R, parser.getState());
         assertEquals("c", parser.getWorkStack().get(0).getValue());
         assertEquals("S", parser.getInputStack().get(0).getValue());
+    }
+
+    @Test
+    void printProduction(){
+        List<Token> workStack = new ArrayList<>();
+        workStack.add(new Token("a"));
+        List<Token> inputStack = new ArrayList<>();
+        Nonterminal nonterminal = new Nonterminal("S");
+        ProductionRule productionRule = new ProductionRule();
+        List<Token> rule = Arrays.asList(new Token("b"), new Token("a"));
+        productionRule.setRule(rule);
+        nonterminal.setProductionRule(productionRule);
+        inputStack.add(nonterminal);
+        inputStack.add(new Token("c"));
+        Parser parser = new Parser(StateType.Q,1,new ArrayList<>(), inputStack,nonterminal); // (q,1,epsilon,Sc)
+
+        parser.printProduction();
     }
 }

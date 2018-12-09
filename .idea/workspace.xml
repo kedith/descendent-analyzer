@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a4cf8260-53b1-4a24-b1e3-7f7b920130c7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab5.iml" beforeDir="false" afterPath="$PROJECT_DIR$/lab5.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/StateType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/StateType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Nonterminal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Nonterminal.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +20,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="14" selection-start-column="14" selection-end-column="14" />
+            <state relative-caret-position="200">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -29,14 +32,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="50" column="11" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="11" />
+            <state relative-caret-position="510">
+              <caret line="77" column="8" selection-start-line="77" selection-start-column="8" selection-end-line="77" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1712#1713#0" expanded="true" />
-                <element signature="e#1747#1748#0" expanded="true" />
-                <element signature="e#3711#3712#0" expanded="true" />
-                <element signature="e#3746#3747#0" expanded="true" />
+                <element signature="e#4343#4344#0" expanded="true" />
+                <element signature="e#6342#6343#0" expanded="true" />
+                <element signature="e#6415#6416#0" expanded="true" />
+                <element signature="e#6478#6479#0" expanded="true" />
+                <element signature="e#6635#6636#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -45,8 +49,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ParserTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="121" column="111" selection-start-line="121" selection-start-column="111" selection-end-line="121" selection-end-column="111" />
+            <state relative-caret-position="266">
+              <caret line="148" column="36" selection-start-line="148" selection-start-column="36" selection-end-line="148" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -66,12 +70,15 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/Nonterminal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="29" selection-start-line="29" selection-end-line="29" />
+            <state relative-caret-position="286">
+              <caret line="19" column="76" selection-start-line="19" selection-start-column="76" selection-end-line="19" selection-end-column="76" />
               <folding>
+                <element signature="e#623#624#0" expanded="true" />
                 <element signature="e#668#669#0" expanded="true" />
                 <element signature="e#702#703#0" expanded="true" />
                 <element signature="e#735#736#0" expanded="true" />
+                <element signature="e#914#915#0" expanded="true" />
+                <element signature="e#968#969#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -142,10 +149,11 @@
         <option value="$PROJECT_DIR$/src/ProductionRule.java" />
         <option value="$PROJECT_DIR$/src/Nonterminal.java" />
         <option value="$PROJECT_DIR$/src/AnalyzerTest.java" />
-        <option value="$PROJECT_DIR$/src/model/Nonterminal.java" />
         <option value="$PROJECT_DIR$/src/Analyzer.java" />
         <option value="$PROJECT_DIR$/src/model/StateType.java" />
+        <option value="$PROJECT_DIR$/src/model/Nonterminal.java" />
         <option value="$PROJECT_DIR$/src/ParserTest.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Parser.java" />
       </list>
     </option>
@@ -195,7 +203,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544344916328" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544354213820" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="create.test.in.the.same.root" value="true" />
@@ -222,7 +230,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ParserTest.printProduction">
+  <component name="RunManager" selected="JUnit.ParserTest.parse">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="lab5" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ParserTest.anotherTryBacktracking" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="lab5" />
       <option name="PACKAGE_NAME" value="test" />
@@ -233,31 +248,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ParserTest.anotherTryWithError" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="lab5" />
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.ParserTest" />
-      <option name="METHOD_NAME" value="anotherTryWithError" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ParserTest.anotherTryWithNewRule" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="lab5" />
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.ParserTest" />
-      <option name="METHOD_NAME" value="anotherTryWithNewRule" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ParserTest.expansion (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="lab5" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ParserTest" />
       <option name="METHOD_NAME" value="expansion" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParserTest.parse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="lab5" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ParserTest" />
+      <option name="METHOD_NAME" value="parse" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -275,11 +280,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ParserTest.parse" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.ParserTest.printProduction" />
         <item itemvalue="JUnit.ParserTest.expansion (1)" />
         <item itemvalue="JUnit.ParserTest.anotherTryBacktracking" />
-        <item itemvalue="JUnit.ParserTest.anotherTryWithError" />
-        <item itemvalue="JUnit.ParserTest.anotherTryWithNewRule" />
       </list>
     </recent_temporary>
   </component>
@@ -296,7 +301,7 @@
       <workItem from="1544117931375" duration="3723000" />
       <workItem from="1544255396021" duration="1609000" />
       <workItem from="1544282775151" duration="10244000" />
-      <workItem from="1544342388794" duration="2398000" />
+      <workItem from="1544342388794" duration="11676000" />
     </task>
     <task id="LOCAL-00001" summary="added all the transitions to the parser and tested the complex ones">
       <created>1544293257560</created>
@@ -305,28 +310,17 @@
       <option name="project" value="LOCAL" />
       <updated>1544293257560</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added printProduction method and tested it">
+      <created>1544345115853</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1544345115853</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ParserTest_printProduction - 2018.12.09 at 10h 29m 02s.xml">
-      <configuration name="ParserTest.printProduction" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParserTest_printProduction - 2018.12.09 at 10h 29m 36s.xml">
-      <configuration name="ParserTest.printProduction" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParserTest_printProduction - 2018.12.09 at 10h 31m 17s.xml">
-      <configuration name="ParserTest.printProduction" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParserTest_printProduction - 2018.12.09 at 10h 35m 05s.xml">
-      <configuration name="ParserTest.printProduction" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParserTest_expansion_(1) - 2018.12.09 at 10h 35m 23s.xml">
-      <configuration name="ParserTest.expansion (1)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParserTest_printProduction - 2018.12.09 at 10h 35m 30s.xml">
-      <configuration name="ParserTest.printProduction" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="ParserTest_printProduction - 2018.12.09 at 10h 36m 06s.xml">
       <configuration name="ParserTest.printProduction" configurationId="JUnit" />
     </history-entry>
@@ -339,15 +333,33 @@
     <history-entry file="ParserTest_printProduction - 2018.12.09 at 10h 38m 45s.xml">
       <configuration name="ParserTest.printProduction" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="ParserTest_printProduction - 2018.12.09 at 11h 08m 18s.xml">
+      <configuration name="ParserTest.printProduction" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ParserTest_printProduction - 2018.12.09 at 11h 11m 53s.xml">
+      <configuration name="ParserTest.printProduction" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ParserTest_parse - 2018.12.09 at 13h 04m 43s.xml">
+      <configuration name="ParserTest.parse" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ParserTest_parse - 2018.12.09 at 13h 05m 53s.xml">
+      <configuration name="ParserTest.parse" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ParserTest_parse - 2018.12.09 at 13h 06m 58s.xml">
+      <configuration name="ParserTest.parse" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ParserTest_parse - 2018.12.09 at 13h 09m 53s.xml">
+      <configuration name="ParserTest.parse" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17974000" />
+    <option name="totallyTimeSpent" value="27252000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16845638" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09328859" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -423,16 +435,24 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added all the transitions to the parser and tested the complex ones" />
-    <option name="LAST_COMMIT_MESSAGE" value="added all the transitions to the parser and tested the complex ones" />
+    <MESSAGE value="added printProduction method and tested it" />
+    <option name="LAST_COMMIT_MESSAGE" value="added printProduction method and tested it" />
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>((Nonterminal)token).getProductionRule().getRule()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>Collections.indexOfSubList(workStack, ((Nonterminal)token).getProductionRule().getRule())</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="14" selection-start-column="14" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/List.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6400">
@@ -440,14 +460,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Nonterminal.java">
+    <entry file="file://$PROJECT_DIR$/src/model/StateType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        <state relative-caret-position="200">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
           <folding>
-            <element signature="e#668#669#0" expanded="true" />
-            <element signature="e#702#703#0" expanded="true" />
-            <element signature="e#735#736#0" expanded="true" />
+            <element signature="e#209#210#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -462,16 +480,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/StateType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="e#209#210#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Token.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -482,10 +490,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ParserTest.java">
+    <entry file="file://$PROJECT_DIR$/src/model/Nonterminal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
-          <caret line="121" column="111" selection-start-line="121" selection-start-column="111" selection-end-line="121" selection-end-column="111" />
+          <caret line="19" column="76" selection-start-line="19" selection-start-column="76" selection-end-line="19" selection-end-column="76" />
+          <folding>
+            <element signature="e#623#624#0" expanded="true" />
+            <element signature="e#668#669#0" expanded="true" />
+            <element signature="e#702#703#0" expanded="true" />
+            <element signature="e#735#736#0" expanded="true" />
+            <element signature="e#914#915#0" expanded="true" />
+            <element signature="e#968#969#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ParserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="148" column="36" selection-start-line="148" selection-start-column="36" selection-end-line="148" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -494,14 +527,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="50" column="11" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="11" />
+        <state relative-caret-position="510">
+          <caret line="77" column="8" selection-start-line="77" selection-start-column="8" selection-end-line="77" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1712#1713#0" expanded="true" />
-            <element signature="e#1747#1748#0" expanded="true" />
-            <element signature="e#3711#3712#0" expanded="true" />
-            <element signature="e#3746#3747#0" expanded="true" />
+            <element signature="e#4343#4344#0" expanded="true" />
+            <element signature="e#6342#6343#0" expanded="true" />
+            <element signature="e#6415#6416#0" expanded="true" />
+            <element signature="e#6478#6479#0" expanded="true" />
+            <element signature="e#6635#6636#0" expanded="true" />
           </folding>
         </state>
       </provider>

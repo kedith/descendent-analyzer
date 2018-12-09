@@ -3,6 +3,7 @@ import model.StateType;
 import model.Token;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Parser {
@@ -16,15 +17,13 @@ public class Parser {
     private Nonterminal start;
 
     public Parser() {
+        this.state = StateType.Q;
+        this.index = 0;
         workStack = new ArrayList<>();
         inputStack = new ArrayList<>();
     }
 
     public Parser(StateType state, int index, List<Token> workStack, List<Token> inputStack, Nonterminal start) {
-        initializeParser(state,index, workStack,inputStack,start);
-    }
-
-    public void initializeParser(StateType state, int index, List<Token> workStack, List<Token> inputStack, Nonterminal start){
         this.state = state;
         this.index = index;
         this.workStack = new ArrayList<>(workStack);
@@ -32,21 +31,77 @@ public class Parser {
         this.start = start;
     }
 
-    private String getListString(List<Token> list){
-        return list.isEmpty()? "\u03B5" : //prints epsilon
-                list.stream()
-                .map(Token::getValue)
-                .reduce("",String::concat);
+    public void initialize(Nonterminal start, String sequence) {
+        this.start = start;
+        inputStack.add(start);
+        this.sequence = sequence;
+    }
+
+    private String getWorkStackString() {
+        return workStack.isEmpty() ? "\u03B5" : //prints epsilon
+                workStack.stream()
+                        .map(e -> e instanceof Nonterminal ? e.getValue() + (((Nonterminal) e).getChosenRule() + 1) : e.getValue())
+                        .reduce("", String::concat);
+    }
+
+    private String getInputStackString() {
+        return inputStack.isEmpty() ? "\u03B5" : //prints epsilon
+                inputStack.stream()
+                        .map(Token::getValue)
+                        .reduce("", String::concat);
     }
 
     /**
      * prints the current production
      * example: (q,1,aS,bc)
      */
-    public void printProduction(){
-        System.out.println("("+state + "," + index + "," + getListString(workStack) + "," + getListString(inputStack) + ")");
+    public void printProduction() {
+        System.out.println("(" + state + "," + (index + 1) + "," + getWorkStackString() + "," + getInputStackString() + ")");
     }
-    
+
+    public boolean parse() {
+        printProduction();
+
+        if (index == sequence.length()) {
+            success();
+            printProduction();
+            return true;
+        }
+
+        if(state.equals(StateType.E))
+            return false;
+
+        if (inputStack.isEmpty() && state.equals(StateType.Q)) {
+            localFailure();
+            return parse();
+        }
+        
+        if (!inputStack.isEmpty() && inputStack.get(0) instanceof Nonterminal) {
+            expansion();
+            return parse();
+        } else {
+            if (!inputStack.isEmpty() && state.equals(StateType.Q) && inputStack.get(0).getValue().equals(Character.toString(sequence.charAt(index)))) {
+                advance();
+                return parse();
+            } else {
+                switch (state) {
+                    case Q:
+                        localFailure();
+                        return parse();
+                    case R:
+                        Token token = workStack.get(workStack.size() - 1);
+                        if (!inputStack.isEmpty() && token instanceof Nonterminal
+                                && Collections.indexOfSubList(inputStack, ((Nonterminal) token).getProductionRule().getRule()) == 0) {
+                            anotherTry();
+                        } else
+                            goBack();
+                        return parse();
+                }
+            }
+        }
+        return false;
+    }
+
     /**
      * puts the nonterminal from the beginning of the input stack and appends it to the end of the work stack. Instead of the nonterminal
      * the input stack starts now with the first rule of the nonterminal

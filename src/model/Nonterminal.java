@@ -14,6 +14,11 @@ public class Nonterminal extends Token {
         productionRules = new ArrayList<>();
     }
 
+    public Nonterminal(Nonterminal nonterminal){
+        super(nonterminal.getValue());
+        chosenRule = 0;
+        productionRules = new ArrayList<>(nonterminal.getProductionRules());
+    }
     public List<ProductionRule> getProductionRules() {
         return productionRules;
     }
@@ -36,5 +41,9 @@ public class Nonterminal extends Token {
 
     public ProductionRule getProductionRule() {
         return productionRules.get(chosenRule);
+    }
+
+    public void setProductionRules(List<ProductionRule> productionRules) {
+        this.productionRules = productionRules;
     }
 }

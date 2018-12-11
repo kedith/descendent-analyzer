@@ -1,7 +1,7 @@
+import console.DisplayResult;
 import console.ReadSequence;
 import model.Nonterminal;
 import model.ProductionRule;
-import model.StateType;
 import model.Token;
 
 import java.io.IOException;
@@ -25,7 +25,6 @@ public class Main {
                     Parser parser = new Parser();
                     Nonterminal nonterminal = new Nonterminal("S");
                     ProductionRule r1,r2,r3;
-                    //Nonterminal n1 = new Nonterminal("S");//,n2 = new Nonterminal("S"),n3 = new Nonterminal("S");
                     r1 = new ProductionRule();
                     r2 = new ProductionRule();
                     r3 = new ProductionRule();
@@ -34,9 +33,6 @@ public class Main {
                     r3.setRule(Collections.singletonList(new Token("c"))); //c
 
                     nonterminal.setProductionRules(Arrays.asList(r1,r2,r3));
-                    //nonterminal.setProductionRules(Arrays.asList(r1,r2,r3));
-                    //n1.setProductionRules(Arrays.asList(r1,r2,r3));
-                    //n1.setProductionRules(Arrays.asList(r1,r2,r3));
 
                     parser.initialize(nonterminal, sequence);
                     if (parser.parse()) {
@@ -47,6 +43,34 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("Loading...");
+                    AnalizatorLexical al = new AnalizatorLexical();
+                    al.constructFIPandTS();
+                    if (!al.isEroare()) {
+                        DisplayResult.displayFIP(al.getFip());
+                        DisplayResult.displayTS(al.getTs());
+                    } else {
+                        System.out.println("Eroare lexicala!");
+                    }
+
+                    Nonterminal antet = new Nonterminal("A");
+                    ProductionRule antetRule = new ProductionRule();
+                    antetRule.setRule(Arrays.asList(new Token("int"), new Token("main")));
+                    Nonterminal program = new Nonterminal("P");
+                    ProductionRule programRule = new ProductionRule();
+                    programRule.setRule(Arrays.asList(antet, new Token("{"), new Token("}"))); //<-recursiv la stanga
+                    program.setProductionRules(Arrays.asList(programRule));
+                    //rules!!!
+
+                    Parser programParser = new Parser();
+
+                    String programSequence = al.getFip().fipToSequence();
+                    System.out.println(programSequence);
+                    programParser.initialize(program, programSequence);
+                    if (programParser.parse()) {
+                        System.out.println("Sequence " + programSequence + " accepted!");
+                    } else {
+                        System.out.println("Sequence " + programSequence + " not accepted!");
+                    }
                     break;
                 default:
                     System.out.println("Optiune gresita\n");
@@ -54,6 +78,9 @@ public class Main {
             }
             System.out.print("Alegeti o optiune: ");
             myint = keyboard.nextInt();
+            if (myint==0) {
+                System.out.println("Multumim frumos! :)");
+            }
         }
     }
 

@@ -1,4 +1,5 @@
 import model.Nonterminal;
+import model.ProductionRule;
 import model.StateType;
 import model.Token;
 
@@ -28,12 +29,14 @@ public class Parser {
         this.index = index;
         this.workStack = new ArrayList<>(workStack);
         this.inputStack = new ArrayList<>(inputStack);
-        this.start = start;
+        this.start = new Nonterminal(start.getValue());
+        this.start.setProductionRules(start.getProductionRules());
     }
 
     public void initialize(Nonterminal start, String sequence) {
-        this.start = start;
-        inputStack.add(start);
+        this.start = new Nonterminal(start.getValue());
+        this.start.setProductionRules(start.getProductionRules());
+        inputStack.add(this.start);
         this.sequence = sequence;
     }
 
@@ -63,20 +66,28 @@ public class Parser {
         printProduction();
 
         if (index == sequence.length()) {
-            success();
-            printProduction();
-            return true;
+            if (inputStack.isEmpty()) {
+                success();
+                printProduction();
+                return true;
+            }
+
+            //state = StateType.E;
+            //printProduction();
+            state = StateType.R;
+            goBack();
+            return parse();
         }
 
-        if(state.equals(StateType.E))
+        if (state.equals(StateType.E))
             return false;
 
         if (inputStack.isEmpty() && state.equals(StateType.Q)) {
             localFailure();
             return parse();
         }
-        
-        if (!inputStack.isEmpty() && inputStack.get(0) instanceof Nonterminal) {
+
+        if (state.equals(StateType.Q) && !inputStack.isEmpty() && inputStack.get(0) instanceof Nonterminal) {
             expansion();
             return parse();
         } else {
@@ -89,13 +100,20 @@ public class Parser {
                         localFailure();
                         return parse();
                     case R:
-                        Token token = workStack.get(workStack.size() - 1);
-                        if (!inputStack.isEmpty() && token instanceof Nonterminal
-                                && Collections.indexOfSubList(inputStack, ((Nonterminal) token).getProductionRule().getRule()) == 0) {
-                            anotherTry();
-                        } else
-                            goBack();
-                        return parse();
+                        if (workStack.size() == 0) {
+                            state = StateType.E;
+                            printProduction();
+                            return false;
+                        } else {
+                            Token token = workStack.get(workStack.size() - 1);
+                            if (!(token instanceof Nonterminal)) {
+                                goBack();
+                            } else {
+                                anotherTry();
+                            }
+                            return parse();
+                        }
+
                 }
             }
         }
@@ -109,7 +127,16 @@ public class Parser {
     public void expansion() {
         workStack.add(inputStack.remove(0));
         Nonterminal nonterminal = (Nonterminal) workStack.get(workStack.size() - 1);
-        inputStack.addAll(0, nonterminal.getProductionRule().getRule());
+        List<Token> rule = new ArrayList<>(nonterminal.getProductionRule().getRule());
+        //rule.forEach(r->{if (r instanceof Nonterminal)});
+        for (int i = 0; i < rule.size(); i++) {
+            if (rule.get(i) instanceof Nonterminal) {
+                Nonterminal n = new Nonterminal(nonterminal.getValue());
+                n.setProductionRules(nonterminal.getProductionRules());
+                rule.set(i, n);
+            }
+        }
+        inputStack.addAll(0, rule);
     }
 
     /**
@@ -129,6 +156,11 @@ public class Parser {
      */
     public void goBack() {
         index--;
+        if(workStack.get(workStack.size() - 1) instanceof Nonterminal) {
+            Nonterminal nonterminal = (Nonterminal) workStack.get(workStack.size() - 1);
+            int ruleLength = nonterminal.getProductionRule().getRule().size();
+            inputStack.subList(0, ruleLength).clear(); //remove old rule
+        }
         inputStack.add(0, workStack.remove(workStack.size() - 1));
     }
 
@@ -152,12 +184,18 @@ public class Parser {
                 state = StateType.E;
                 int ruleLength = nonterminal.getProductionRule().getRule().size();
                 inputStack.subList(0, ruleLength).clear(); //remove old rule
-                inputStack.add(workStack.remove(0));
+                Nonterminal n = new Nonterminal(nonterminal.getValue());
+                n.setProductionRules(nonterminal.getProductionRules());
+                workStack.remove(workStack.size() - 1);
+                inputStack.add(0, n);
             } else {
                 state = StateType.R;
                 int ruleLength = nonterminal.getProductionRule().getRule().size();
                 inputStack.subList(0, ruleLength).clear(); //remove old rule
-                inputStack.add(workStack.remove(workStack.size() - 1));
+                Nonterminal n = new Nonterminal(nonterminal.getValue());
+                n.setProductionRules(nonterminal.getProductionRules());
+                workStack.remove(workStack.size() - 1);
+                inputStack.add(0, n);
             }
         }
     }

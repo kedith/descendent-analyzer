@@ -39,6 +39,10 @@ public class Nonterminal extends Token {
         return chosenRule;
     }
 
+    public void setChosenRule(int chosenRule) {
+        this.chosenRule = chosenRule;
+    }
+
     public ProductionRule getProductionRule() {
         return productionRules.get(chosenRule);
     }

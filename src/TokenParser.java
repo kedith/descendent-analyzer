@@ -6,25 +6,26 @@ import model.Token;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-public class Parser {
+public class TokenParser {
     //if true it means that the analyzer is searching for the next symbol. If it is false, the analyzer does backtracking
     private StateType state;
     private int index; // position in the input sequence
     private List<Token> workStack; //the history of the productions
     private List<Token> inputStack; //sequence that is to be processed
 
-    private String sequence; //needs to be checked by the analyzer if it is accepted
+    private List<Token> sequence; //needs to be checked by the analyzer if it is accepted
     private Nonterminal start;
 
-    public Parser() {
+    public TokenParser() {
         this.state = StateType.Q;
         this.index = 0;
         workStack = new ArrayList<>();
         inputStack = new ArrayList<>();
     }
 
-    public Parser(StateType state, int index, List<Token> workStack, List<Token> inputStack, Nonterminal start) {
+    public TokenParser(StateType state, int index, List<Token> workStack, List<Token> inputStack, Nonterminal start) {
         this.state = state;
         this.index = index;
         this.workStack = new ArrayList<>(workStack);
@@ -33,11 +34,11 @@ public class Parser {
         this.start.setProductionRules(start.getProductionRules());
     }
 
-    public void initialize(Nonterminal start, String sequence) {
+    public void initialize(Nonterminal start, List<Token> sequence) {
         this.start = new Nonterminal(start.getValue());
         this.start.setProductionRules(start.getProductionRules());
         inputStack.add(this.start);
-        this.sequence = sequence;
+        this.sequence = new ArrayList<>(sequence);
     }
 
     private String getWorkStackString() {
@@ -62,10 +63,12 @@ public class Parser {
         System.out.println("(" + state + "," + (index + 1) + "," + getWorkStackString() + "," + getInputStackString() + ")");
     }
 
-    public boolean parse() {
+    public boolean parse() throws InterruptedException {
+
+        //TimeUnit.SECONDS.sleep(3);
         printProduction();
 
-        if (index == sequence.length()) {
+        if (index == sequence.size()) {
             if (inputStack.isEmpty()) {
                 success();
                 printProduction();
@@ -91,7 +94,7 @@ public class Parser {
             expansion();
             return parse();
         } else {
-            if (!inputStack.isEmpty() && state.equals(StateType.Q) && inputStack.get(0).getValue().equals(Character.toString(sequence.charAt(index)))) {
+            if (!inputStack.isEmpty() && state.equals(StateType.Q) && inputStack.get(0).getValue().equals(sequence.get(index).getValue())) {
                 advance();
                 return parse();
             } else {
@@ -124,28 +127,18 @@ public class Parser {
      * puts the nonterminal from the beginning of the input stack and appends it to the end of the work stack. Instead of the nonterminal
      * the input stack starts now with the first rule of the nonterminal
      */
-    /*public void expansion() {
-        workStack.add(inputStack.remove(0));
-        Nonterminal nonterminal = (Nonterminal) workStack.get(workStack.size() - 1);
-        List<Token> rule = new ArrayList<>(nonterminal.getProductionRule().getRule());
-        //rule.forEach(r->{if (r instanceof Nonterminal)});
-        for (int i = 0; i < rule.size(); i++) {
-            if (rule.get(i) instanceof Nonterminal) {
-                Nonterminal n = new Nonterminal(nonterminal.getValue());
-                n.setProductionRules(nonterminal.getProductionRules());
-                rule.set(i, n);
-            }
-        }
-        inputStack.addAll(0, rule);
-    }*/
     public void expansion() {
+        ((Nonterminal)inputStack.get(0)).setChosenRule(0);
         workStack.add(inputStack.remove(0));
         Nonterminal nonterminal = (Nonterminal) workStack.get(workStack.size() - 1);
         List<Token> rule = new ArrayList<>(nonterminal.getProductionRule().getRule());
         for (int i = 0; i < rule.size(); i++) {
             if (rule.get(i) instanceof Nonterminal) {
                 Nonterminal n = new Nonterminal(rule.get(i).getValue());
-                n.setProductionRules(((Nonterminal) rule.get(i)).getProductionRules());
+                if (nonterminal.getValue().equals(rule.get(0).getValue())) {
+                    n.setProductionRules(nonterminal.getProductionRules());
+                } else
+                    n.setProductionRules(((Nonterminal) rule.get(i)).getProductionRules());
                 rule.set(i, n);
             }
         }
@@ -169,7 +162,7 @@ public class Parser {
      */
     public void goBack() {
         index--;
-        if(workStack.get(workStack.size() - 1) instanceof Nonterminal) {
+        if (workStack.get(workStack.size() - 1) instanceof Nonterminal) {
             Nonterminal nonterminal = (Nonterminal) workStack.get(workStack.size() - 1);
             int ruleLength = nonterminal.getProductionRule().getRule().size();
             inputStack.subList(0, ruleLength).clear(); //remove old rule
@@ -234,3 +227,4 @@ public class Parser {
         this.start = start;
     }
 }
+

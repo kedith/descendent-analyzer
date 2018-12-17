@@ -1,5 +1,14 @@
-int main(){
-    int a=7.27;
-    int b=35.809;
-    return 0;
+int main() {
+	int raza;
+	int arie;
+	int perim;
+	double pi;
+
+	pi = 3.14;
+
+	cin >> raza;
+
+    arie = pi * 2;
+
+    cout << arie;
 }

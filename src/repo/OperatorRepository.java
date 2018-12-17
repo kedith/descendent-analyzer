@@ -37,8 +37,13 @@ public class OperatorRepository {
         Pair<Integer, String> p20 = new Pair<>(20, "/");
         Pair<Integer, String> p21 = new Pair<>(21, "*");
         Pair<Integer, String> p22 = new Pair<>(22, "%");
-        Pair<Integer, String> p23 = new Pair<>(23, ">>");
-        Pair<Integer, String> p24 = new Pair<>(24, "<<");
+        //Pair<Integer, String> p23 = new Pair<>(23, ">>");
+        //Pair<Integer, String> p24 = new Pair<>(24, "<<");
+        Pair<Integer, String> p25 = new Pair<>(25, "<");
+        Pair<Integer, String> p26 = new Pair<>(26, ">");
+        //Pair<Integer, String> p27 = new Pair<>(27, "==");
+        //Pair<Integer, String> p28 = new Pair<>(28, "<=");
+        //Pair<Integer, String> p29 = new Pair<>(29, ">=");
         operatorList.add(p1);
         operatorList.add(p2);
         operatorList.add(p3);
@@ -61,8 +66,13 @@ public class OperatorRepository {
         operatorList.add(p20);
         operatorList.add(p21);
         operatorList.add(p22);
-        operatorList.add(p23);
-        operatorList.add(p24);
+        //operatorList.add(p23);
+        //operatorList.add(p24);
+        operatorList.add(p25);
+        operatorList.add(p26);
+        //operatorList.add(p27);
+        //operatorList.add(p28);
+        //operatorList.add(p29);
     }
 
     public List<Pair<Integer, String>> getOperatorList() {

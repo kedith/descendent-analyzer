@@ -6,9 +6,14 @@ int main() {
 
 	pi = 3.14;
 
-	cin >> raza;
+	cin(raza);
 
-    arie = pi * 2;
+    if (raza > 0) {
+        arie = 2 * pi * raza;
 
-    cout << arie;
+        perim = pi * raza * raza;
+
+        cout(arie);
+        cout(perim);
+    }
 }

@@ -49,32 +49,66 @@ public class Main {
                         System.out.println("Eroare lexicala!");
                     }
 
+                    Nonterminal listai = new Nonterminal("L");
+
+                    Nonterminal conditieAux = new Nonterminal("CONDAUX");
+                    ProductionRule conditieAuxRul1 = new ProductionRule();
+                    ProductionRule conditieAuxRul2 = new ProductionRule();
+                    ProductionRule conditieAuxRul3 = new ProductionRule();
+                    //ProductionRule conditieAuxRul4 = new ProductionRule();
+                    //ProductionRule conditieAuxRul5 = new ProductionRule();
+                    //ProductionRule conditieAuxRul6 = new ProductionRule();
+                    Nonterminal conditie = new Nonterminal("COND");
+
+                    conditieAuxRul1.setRule(Arrays.asList(new Token(">"), conditie));
+                    conditieAuxRul3.setRule(Arrays.asList(new Token("<"), conditie));
+                    //conditieAuxRul4.setRule(Arrays.asList(new Token("=="), conditie));
+                    //conditieAuxRul5.setRule(Arrays.asList(new Token("<="), conditie));
+                    //conditieAuxRul6.setRule(Arrays.asList(new Token(">="), conditie));
+                    conditieAux.setProductionRules(Arrays.asList(conditieAuxRul1,conditieAuxRul2,conditieAuxRul3));//,conditieAuxRul4,conditieAuxRul5,conditieAuxRul6));
+
+                    ProductionRule conditieRule1 = new ProductionRule();
+                    ProductionRule conditieRule2 = new ProductionRule();
+                    conditieRule1.setRule(Arrays.asList(new Token("CONST"), conditieAux));
+                    conditieRule2.setRule(Arrays.asList(new Token("ID"), conditieAux));
+                    conditie.setProductionRules(Arrays.asList(conditieRule1, conditieRule2));
+
+                    Nonterminal myIf = new Nonterminal("IF");
+                    ProductionRule myIfRule1 = new ProductionRule();
+                    myIfRule1.setRule(Arrays.asList(new Token("if"), new Token("("), conditie, new Token(")"), new Token("{"),listai,new Token("}")));
+                    myIf.setProductionRules(Arrays.asList(myIfRule1));
+
                     Nonterminal afisare = new Nonterminal("AFIS");
                     ProductionRule afisRule1 = new ProductionRule();
-                    afisRule1.setRule(Arrays.asList(new Token("cout"), new Token("<<"), new Token("ID"), new Token(";"))); //!!!!
+                    afisRule1.setRule(Arrays.asList(new Token("cout"), new Token("("), new Token("ID"), new Token(")"), new Token(";"))); //!!!!
                     afisare.setProductionRules(Arrays.asList(afisRule1));
 
                     Nonterminal citire = new Nonterminal("CITIRE");
                     ProductionRule citRule1 = new ProductionRule();
-                    citRule1.setRule(Arrays.asList(new Token("cin"), new Token(">>"), new Token("ID"), new Token(";"))); //!!!!
+                    citRule1.setRule(Arrays.asList(new Token("cin"), new Token("("), new Token("ID"), new Token(")"), new Token(";"))); //!!!!
                     citire.setProductionRules(Arrays.asList(citRule1));
 
+                    Nonterminal expresieAux = new Nonterminal("EXPRAUX");
+                    ProductionRule expresieAuxRul1 = new ProductionRule();
+                    ProductionRule expresieAuxRul2 = new ProductionRule();
+                    ProductionRule expresieAuxRul3 = new ProductionRule();
+                    ProductionRule expresieAuxRul4 = new ProductionRule();
+                    ProductionRule expresieAuxRul5 = new ProductionRule();
+                    ProductionRule expresieAuxRul6 = new ProductionRule();
                     Nonterminal expresie = new Nonterminal("EXPR");
+
+                    expresieAuxRul1.setRule(Arrays.asList(new Token("*"), expresie));
+                    expresieAuxRul3.setRule(Arrays.asList(new Token("+"), expresie));
+                    expresieAuxRul4.setRule(Arrays.asList(new Token("-"), expresie));
+                    expresieAuxRul5.setRule(Arrays.asList(new Token("%"), expresie));
+                    expresieAuxRul6.setRule(Arrays.asList(new Token("/"), expresie));
+                    expresieAux.setProductionRules(Arrays.asList(expresieAuxRul1,expresieAuxRul2,expresieAuxRul3,expresieAuxRul4,expresieAuxRul5,expresieAuxRul6));
+
                     ProductionRule exprRule1 = new ProductionRule();
                     ProductionRule exprRule2 = new ProductionRule();
-                    ProductionRule exprRule3 = new ProductionRule();
-                    ProductionRule exprRule4 = new ProductionRule();
-                    ProductionRule exprRule5 = new ProductionRule();
-                    ProductionRule exprRule6 = new ProductionRule();
-                    ProductionRule exprRule7 = new ProductionRule();
-                    exprRule1.setRule(Arrays.asList(new Token("ID")));
-                    exprRule2.setRule(Arrays.asList(new Token("CONST")));
-                    exprRule3.setRule(Arrays.asList(new Token("ID"), new Token("*"), expresie));
-//                    exprRule4.setRule(Arrays.asList(expresie, new Token("+"), expresie));
-//                    exprRule5.setRule(Arrays.asList(expresie, new Token("%"), expresie));
-//                    exprRule6.setRule(Arrays.asList(expresie, new Token("*"), expresie));
-//                    exprRule7.setRule(Arrays.asList(expresie, new Token("/"), expresie));
-                    expresie.setProductionRules(Arrays.asList(exprRule1, exprRule2, exprRule3));//, exprRule4, exprRule5, exprRule6, exprRule7));
+                    exprRule1.setRule(Arrays.asList(new Token("CONST"), expresieAux));
+                    exprRule2.setRule(Arrays.asList(new Token("ID"), expresieAux));
+                    expresie.setProductionRules(Arrays.asList(exprRule1, exprRule2));
 
                     Nonterminal atribuire = new Nonterminal("ATRIBUIRE");
                     ProductionRule atrRule1 = new ProductionRule();
@@ -98,14 +132,16 @@ public class Main {
                     ProductionRule instrRule2 = new ProductionRule();
                     ProductionRule instrRule3 = new ProductionRule();
                     ProductionRule instrRule4 = new ProductionRule();
+                    ProductionRule instrRule5 = new ProductionRule();
                     instrRule1.setRule(Collections.singletonList(decl));
                     instrRule2.setRule(Collections.singletonList(atribuire));
                     instrRule3.setRule(Collections.singletonList(citire));
                     instrRule4.setRule(Collections.singletonList(afisare));
-                    instr.setProductionRules(Arrays.asList(instrRule1, instrRule2, instrRule3, instrRule4));
+                    instrRule5.setRule(Collections.singletonList(myIf));
+                    instr.setProductionRules(Arrays.asList(instrRule1, instrRule2, instrRule3, instrRule4, instrRule5));
 
 
-                    Nonterminal listai = new Nonterminal("L");
+//                    Nonterminal listai = new Nonterminal("L");
                     ProductionRule listaiRule1 = new ProductionRule();
                     ProductionRule listaiRule2 = new ProductionRule();
                     listaiRule1.setRule(Collections.singletonList(instr));
